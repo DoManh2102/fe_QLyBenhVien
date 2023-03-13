@@ -1,0 +1,46 @@
+.gradient-custom {
+    background: linear-gradient(135deg, rgba(34, 193, 195, 1) 0%, rgba(253, 187, 45, 1) 100%);
+    .container {
+        .card {
+            .card-body {
+                .btn_login {
+                    background: linear-gradient(90deg, rgba(34, 193, 195, 1) 0%, rgba(253, 187, 45, 1) 100%);
+                    width: 80%;
+                    height: 40px;
+                    font-size: 1.3rem;
+                    color: white;
+                    font-weight: 700;
+                    border-radius: 25px;
+                }
+                .login_logo {
+                    a {
+                        width: 40px;
+                        height: 40px;
+                        text-align: center;
+                        line-height: 38px;
+                        border-radius: 50%;
+                        color: white;
+                        font-size: 20px;
+                        margin: 0 5px;
+                    }
+                    .logo_facebook {
+                        background-color: #3b5998;
+                    }
+                    .logo_google {
+                        background-color: #ea4335;
+                    }
+                }
+                .custom-form-password {
+                    position: relative;
+                    .eye-password {
+                        position: absolute;
+                        top: 8px;
+                        right: 10px;
+                        font-size: 18px;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
+}

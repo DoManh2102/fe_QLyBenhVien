@@ -1,0 +1,140 @@
+.section {
+    height: 330px;
+    padding: 0 12vw;
+    border-top: 3px solid #efeef5;
+}
+
+.section-bg {
+    background-color: #f5f5f5;
+}
+
+.section-container {
+    .section-content {
+        height: 100%;
+        padding: 20px 0;
+        .section_title {
+            display: flex;
+            justify-content: space-between;
+            h2 {
+                font-size: 24px;
+                font-weight: bold;
+                padding: 15px 0px 10px 5px;
+            }
+            a {
+                height: 40px;
+                background: #ebebeb;
+                text-transform: uppercase;
+                display: inline-block;
+                padding: 10px 15px;
+                color: #282e41;
+                margin-right: 5px;
+                cursor: pointer;
+                &:hover {
+                    color: #fff;
+                    background-color: #dbc74b;
+                }
+            }
+        }
+        .section_item {
+            width: 280px;
+            text-align: left;
+            padding: 5px;
+            text-decoration: none;
+            .img_section {
+                height: 160px;
+                &.section-specialty {
+                    background: url("../../../assets/images/co-xuong-khop.jpg") center center no-repeat;
+                    background-size: cover;
+                }
+                &.section-medicalFacility {
+                    background: url("../../../assets/images/logobenhvien108.jpg") center center no-repeat;
+                    background-size: cover;
+                }
+                &.section-handbook {
+                    background: url("../../../assets/images/kham-nam-khoa-hn-p2.png") center center no-repeat;
+                    background-size: cover;
+                }
+            }
+            h3 {
+                color: #111;
+                font-size: 15px;
+                padding: 5px 0;
+                &:hover {
+                    color: #45c3d2;
+                }
+                &.section_item_description {
+                    font-weight: bold;
+                    font-size: 16px;
+                    margin-bottom: 15px;
+                }
+            }
+        }
+        .slick-next,
+        .slick-prev {
+            position: absolute;
+            top: 40%;
+            &::before {
+                color: #959595;
+                font-size: 30px;
+            }
+        }
+        .slick-prev {
+            left: -35px;
+        }
+
+        //MedicalFacility
+        .section-item-doctor {
+            width: 98% !important;
+            height: 250px;
+            text-align: center;
+            border: 1px solid #eee;
+            display: inline-block;
+            padding: 20px 3px;
+            .section_item_img {
+                width: 120px;
+                height: 120px;
+                margin: 0 auto;
+                img {
+                    border-radius: 50%;
+                    width: auto;
+                    height: 100%;
+                }
+            }
+            h3 {
+                color: #111;
+                font-size: 15px;
+                padding: 15px 0 0;
+                &:hover {
+                    color: #45c3d2;
+                }
+            }
+            span {
+                color: #555;
+                font-size: 12px;
+            }
+        }
+    }
+}
+
+.about-content {
+    height: 320px;
+    .about-right {
+        p {
+            padding: 0 20px;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 1.5;
+        }
+    }
+}
+
+.home-footer {
+    height: 80px;
+    background-color: #64b9e5;
+    color: #fff;
+    line-height: 70px;
+}
+
+.row {
+    --bs-gutter-x: 0rem;
+}

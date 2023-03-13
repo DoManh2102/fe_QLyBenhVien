@@ -1,0 +1,49 @@
+{
+    "windown": {
+        "alert": {
+            "delete": "You may want to delete?"
+        }
+    },
+    "home": "Home",
+    "home-header": {
+        "specialty": "Medical specialty",
+        "searchDoctor": "Search doctors by specialty",
+        "healthFacilities": "Health facilities",
+        "selectHospital": "Select hospital for medical examination",
+        "doctor": "Doctor",
+        "selectDoctor": "Choose a good doctor",
+        "checkupPackage": "Checkup package",
+        "checkHealth": "Check overall health",
+        "support": "Support"
+    },
+    "menu": {
+        "admin": {
+            "management": "Management",
+            "user": "User",
+            "doctor": "Doctor",
+            "clinic": "Clinic",
+            "specialty": "Specialty",
+            "handbook": "Handbook",
+            "manage-user": "Manage User",
+            "manage-doctor": "Manage Doctor",
+            "manage-admin": "Manage Admin",
+            "manage-handbook": "Manage Handbook",
+            "manage-specialty": "Manage Specialty"
+        }
+    },
+    "modal_manageUser": {
+        "add": "Add new user",
+        "email": "Email",
+        "password": "Password",
+        "firstName": "FirstName",
+        "lastName": "LastName",
+        "phone": "Phone",
+        "address": "Address",
+        "gender": "Gender",
+        "postion": "Postion",
+        "roleID": "roleID",
+        "image": "Avata",
+        "save": "Save",
+        "close": "Close"
+    }
+}

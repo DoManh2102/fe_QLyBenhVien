@@ -1,0 +1,47 @@
+{
+    "windown": {
+        "delete": "Bạn có muốn xoá không?"
+    },
+    "home": "Trang chủ",
+    "home-header": {
+        "specialty": "Chuyên khoa",
+        "searchDoctor": "Tìm bác sĩ theo chuyên khoa",
+        "healthFacilities": "Cơ sở y tế",
+        "selectHospital": "Chọn bệnh viện phòng khám",
+        "doctor": "Bác sĩ",
+        "selectDoctor": "Chọn bác sĩ giỏi",
+        "checkupPackage": "Gói khám",
+        "checkHealth": "Khám sức khoẻ tổng quan",
+        "support": "Hỗ trợ"
+    },
+    "menu": {
+        "admin": {
+            "management": "Quản Lý",
+            "user": "Người dùng",
+            "doctor": "Bác sĩ",
+            "clinic": "Phòng khám",
+            "specialty": "Chuyên khoa",
+            "handbook": "Cẩm nang",
+            "manage-user": "Quản lý người dùng",
+            "manage-doctor": "Quản lý bác sĩ",
+            "manage-admin": "Quản lý admin",
+            "manage-handbook": "Quản lý cẩm nang",
+            "manage-specialty": "Quản lý chuyên khoa"
+        }
+    },
+    "modal_manageUser": {
+        "add": "Thêm mới người dùng",
+        "image": "Hình ảnh",
+        "email": "Email",
+        "password": "Mật khẩu",
+        "firstName": "Tên",
+        "lastName": "Họ",
+        "phone": "Số điện thoại",
+        "address": "Địa chỉ",
+        "gender": "Gới tính",
+        "postion": "Chức vụ",
+        "roleID": "Vai trò",
+        "save": "Lưu",
+        "close": "Đóng"
+    }
+}
