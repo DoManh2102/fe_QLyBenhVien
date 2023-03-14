@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { createNewUserService, deleteUserService, handleGetUserService } from '../../../../services/userService';
+import { createNewUserService, deleteUserService, eidtUserService, handleGetUserService } from '../../../../services/userService';
 import ModalUser from './ModalUser';
 import TableBasic from '../../../../components/Table/TableBasic';
 import { FormattedMessage } from 'react-intl';
 import Swal from 'sweetalert2';
+import { CRUD_ACTION } from '../../../../utils/constant';
 
 const headerList = [
     { fields: 'email', width: '20%' },
@@ -18,8 +19,12 @@ function UserManage(props) {
     const [arrUser, setArrUser] = useState([])
     const [showModal, setShowModal] = useState(false);
 
+    const [typeModal, setTypeModal] = useState({
+        btnSubmit: '',
+        userEdit: {}
+    })
+
     const handleClose = () => setShowModal(false);
-    const handleShow = () => setShowModal(true);
 
     useEffect(() => {
         getAllUser()
@@ -35,6 +40,53 @@ function UserManage(props) {
             const response = await createNewUserService(data)
             if (response && response.errCode === 0) {
                 Swal.fire('Thêm thành công')
+                getAllUser();
+            } else {
+                alert(response.errMessage)
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+
+
+    const showModalUser = (data, typeButton) => {
+        let imgBase64 = '';
+        if (data.image) {
+            imgBase64 = new Buffer(data.image, 'base64').toString('binary')
+        }
+        setShowModal(true)
+        if (typeButton === CRUD_ACTION.UPDEAT) {
+            setTypeModal({
+                btnSubmit: typeButton,
+                userEdit: {
+                    ...data,
+                    gender: 'M',
+                    roleId: 'R2',
+                    positionId: 'P0',
+                    imageUrl: imgBase64
+                }
+            })
+        }
+        else if (typeButton === CRUD_ACTION.CREATE) {
+            setTypeModal({
+                btnSubmit: typeButton,
+                userEdit: {
+                    gender: 'M',
+                    roleId: 'R2',
+                    positionId: 'P0',
+                }
+            })
+        }
+    }
+
+    const handleEditUser = async (data) => {
+        console.log(data);
+        try {
+            const response = await eidtUserService(data)
+            if (response && response.errCode === 0) {
+                Swal.fire('Cập nhật thành công')
                 getAllUser()
             } else {
                 alert(response.errMessage)
@@ -66,10 +118,12 @@ function UserManage(props) {
             <ModalUser
                 showModal={showModal}
                 handleClose={handleClose}
-                handleShow={handleShow}
                 createNewUser={createNewUser}
+                typeModal={typeModal}
+                updateUser={handleEditUser}
+                showModalUser={showModalUser}
             />
-            <TableBasic headerList={headerList} data={arrUser} deleteRow={deleteUser} />
+            <TableBasic headerList={headerList} data={arrUser} deleteRow={deleteUser} showModalUser={showModalUser} />
         </React.Fragment>
     );
 }

@@ -1,10 +1,13 @@
 import React from 'react';
 import Table from 'react-bootstrap/Table';
 import { BiDetail } from 'react-icons/bi';
+import { CRUD_ACTION } from '../../utils/constant';
 
-function TableBasic({ headerList, data, deleteRow, toggleModal, cartItem }) {
+
+function TableBasic({ headerList, data, deleteRow, showModalUser, cartItem }) {
     return (
         <Table bordered hover style={{ color: '#fff' }}>
+
             <thead>
                 <tr>
                     {headerList && headerList.length > 0 && headerList.map((title, index) =>
@@ -25,13 +28,13 @@ function TableBasic({ headerList, data, deleteRow, toggleModal, cartItem }) {
                                         <td key={index} style={{ width: `${column.width}` }
                                         }>
                                             {column.fields === 'price' || column.fields === 'total' ? new Intl.NumberFormat().format(tdData) + ' vnđ' : tdData}
-                                            {column.btnEdit && toggleModal && <button onClick={() =>
-                                                toggleModal(row)
+                                            {column.btnEdit && showModalUser && <button onClick={() =>
+                                                showModalUser(row, CRUD_ACTION.UPDEAT)
                                             } className='btn btn-success me-2 px-3'>Edit</button>}
                                             {column.btnDelete ? <button onClick={() => deleteRow(row)} className='btn btn-danger ml-2 px-2'>Delete</button> : ''}
                                             {column.btnDetail ? <BiDetail style={{ fontSize: '30px' }} onClick={() => {
                                                 return (
-                                                    toggleModal(true),
+                                                    showModalUser(true),
                                                     cartItem(row.productCart)
                                                 )
                                             }} /> : ''}

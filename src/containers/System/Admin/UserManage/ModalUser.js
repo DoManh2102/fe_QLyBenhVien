@@ -6,13 +6,13 @@ import { AiOutlineCloseCircle } from 'react-icons/ai';
 import { ImUpload3 } from 'react-icons/im';
 import { FormattedMessage } from 'react-intl';
 import { getAllCodeService } from '../../../../services/allCode';
-import { LANGUAGES } from '../../../../utils/constant';
+import { LANGUAGES, CRUD_ACTION } from '../../../../utils/constant';
 import { useSelector } from 'react-redux';
-
+import CommonUtils from '../../../../utils/CommonUtils';
 
 function ModalUser(props) {
     let { language } = useSelector(state => state.app)
-    const { showModal, handleClose, handleShow, createNewUser } = props;
+    const { showModal, handleClose, createNewUser, typeModal, updateUser, showModalUser } = props;
     const [allCode, setAllCode] = useState([])
     const [valueInput, setValueInput] = useState({
         email: '',
@@ -27,10 +27,14 @@ function ModalUser(props) {
         image: '',
         imageUrl: ''
     })
-
     useEffect(() => {
         getAllCode()
     }, [])
+
+    // khi typeModal.userEdit thay đổi => setValueInput
+    useEffect(() => {
+        typeModal && typeModal.userEdit && setValueInput(typeModal.userEdit)
+    }, [typeModal.userEdit])
 
     const getAllCode = async () => {
         const allCode = await getAllCodeService();
@@ -45,19 +49,22 @@ function ModalUser(props) {
         })
     }
 
-    const handleChangeFileUploadAvata = (e) => {
+    const handleChangeFileUploadAvata = async (e) => {
         let file = e.target.files[0]
-        const imgUrl = URL.createObjectURL(file)
-        setValueInput({
-            ...valueInput,
-            imageUrl: imgUrl,
-            image: file
-        })
+        if (file) {
+            const imgUrl = URL.createObjectURL(file)
+            let base64 = await CommonUtils.getBase64(file)
+            setValueInput({
+                ...valueInput,
+                imageUrl: imgUrl,
+                image: base64
+            })
+        }
     }
 
-    const validMissingInput = () => {
+    const validMissingInput = (arrInput) => {
+        if (!arrInput) return false;
         let isValid = true;
-        let arrInput = ['email', 'password', 'firstName', 'lastName', 'address'];
         for (let i = 0; i < arrInput.length; i++) {
             if (!valueInput[arrInput[i]]) {
                 isValid = false;
@@ -69,7 +76,8 @@ function ModalUser(props) {
     }
 
     const handleAddNewUser = () => {
-        const isValid = validMissingInput();
+        let arrInput = ['email', 'password', 'firstName', 'lastName', 'address'];
+        const isValid = validMissingInput(arrInput);
         if (isValid) {
             handleClose(); //đóng modal
             setTimeout(() => { // modal đóng mới thực hiện createNewUser
@@ -79,9 +87,21 @@ function ModalUser(props) {
         }
     }
 
+    const handleUpdateUser = () => {
+        let arrInput = ['email', 'firstName', 'lastName', 'address'];
+        const isValid = validMissingInput(arrInput);
+        if (isValid) {
+            handleClose(); //đóng modal
+            setTimeout(() => { // modal đóng mới thực hiện updateUser
+                updateUser(valueInput)
+            }, 200)
+            setValueInput('')
+        }
+    }
+
     return (
         <>
-            <Button className="btn btn-primary my-2 px-2" onClick={handleShow}>
+            <Button className="btn btn-primary my-2 px-2" onClick={() => showModalUser(valueInput, CRUD_ACTION.CREATE)}>
                 <FormattedMessage id='modal_manageUser.add' />
             </Button>
             <Modal show={showModal} onHide={handleClose}>
@@ -100,17 +120,29 @@ function ModalUser(props) {
                                 <label>
                                     <FormattedMessage id='modal_manageUser.email' />
                                 </label>
-                                <Input name="email"
-                                    value={valueInput.email}
-                                    onChange={(e) => handleChangeInput(e)} />
+                                {typeModal && typeModal.btnSubmit === 'update' ?
+                                    <Input name="email" disabled
+                                        value={valueInput.email}
+                                        onChange={(e) => handleChangeInput(e)} />
+                                    :
+                                    <Input name="email"
+                                        value={valueInput.email}
+                                        onChange={(e) => handleChangeInput(e)} />
+                                }
                             </div>
                             <div className='form-item col-6'>
                                 <label>
                                     <FormattedMessage id='modal_manageUser.password' />
                                 </label>
-                                <Input name="password"
-                                    value={valueInput.password}
-                                    onChange={(e) => handleChangeInput(e)} />
+                                {typeModal && typeModal.btnSubmit === 'update' ?
+                                    <Input type='password' name="password" disabled
+                                        value='hashPassword'
+                                        onChange={(e) => handleChangeInput(e)} />
+                                    :
+                                    <Input type='password' name="password"
+                                        value={valueInput.password}
+                                        onChange={(e) => handleChangeInput(e)} />
+                                }
                             </div>
                         </div>
                         <div className='row'>
@@ -239,9 +271,17 @@ function ModalUser(props) {
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="primary" onClick={() => handleAddNewUser()}>
-                        <FormattedMessage id="modal_manageUser.save" />
-                    </Button>
+                    {typeModal && typeModal.btnSubmit === CRUD_ACTION.UPDEAT ?
+                        <Button variant="primary"
+                            onClick={() => handleUpdateUser()}
+                        >
+                            <FormattedMessage id="modal_manageUser.update" />
+                        </Button> : <Button variant="primary"
+                            onClick={() => handleAddNewUser()}
+                        >
+                            <FormattedMessage id="modal_manageUser.save" />
+                        </Button>
+                    }
                     <Button variant="secondary" onClick={handleClose}>
                         <FormattedMessage id="modal_manageUser.close" />
                     </Button>

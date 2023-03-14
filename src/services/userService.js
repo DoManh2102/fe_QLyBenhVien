@@ -22,3 +22,7 @@ export const deleteUserService = (id) => {
     return axios.delete(`/user/delete-user/${id}`)
 }
 
+export const eidtUserService = (data) => {
+    console.log(data);
+    return axios.post('/user/update-user', data)
+}
