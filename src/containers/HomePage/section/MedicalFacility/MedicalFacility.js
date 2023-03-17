@@ -4,7 +4,7 @@ import Slider from "react-slick";
 
 function MedicalFacility(props) {
     const settings = {
-        infinite: true,
+        infinite: false,
         speed: 500,
         slidesToShow: 4,
         slidesToScroll: 1,

@@ -1,61 +1,56 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Slider from "react-slick";
-import bshung from '../../../../assets/images/bshung.jpg';
-import bshoaian from '../../../../assets/images/nguyen-thi-hoai-an.jpg';
-
-
+import { LANGUAGES } from '../../../../utils/constant';
+import { useSelector, useDispatch } from 'react-redux';
+import { getTopDoctorAction } from '../../../../store/actions';
+import { FormattedMessage } from 'react-intl';
 
 function OutstandingDoctor(props) {
+    const dispatch = useDispatch()
+    let { topDoctor } = useSelector(state => state.user)
+    let { language } = useSelector(state => state.app)
+
+    useEffect(() => {
+        dispatch(getTopDoctorAction())
+    }, [])
+
     const settings = {
-        infinite: true,
+        infinite: false,
         speed: 500,
-        slidesToShow: 4,
+        slidesToShow: topDoctor.length >= 4 ? 4 : topDoctor.length,
         slidesToScroll: 1,
         autoplay: true
     };
+
     return (
         <section style={{ height: '380px' }} className='section section-container section-bg'>
             <div className='section-content'>
                 <div className='section_title'>
-                    <h2>Bác sĩ nổi bật tuần qua</h2>
-                    <a href='/#'>Tìm kiếm</a>
+                    <h2>
+                        <FormattedMessage id="section.title.top_last_week_doctor" />
+                    </h2>
+                    <a href='/#'>
+                        <FormattedMessage id="section.search" />
+                    </a>
                 </div>
                 <Slider {...settings}>
-                    <div className='section_item section-item-doctor'>
-                        <div className='section_item_img'>
-                            <img src={bshung} alt="bshung" />
-                        </div>
-                        <h3>Bác sĩ Chuyên khoa II Trần Minh Khuyên</h3>
-                        <span>Sức khỏe tâm thần - Tư vấn, trị liệu Tâm lý</span>
-                    </div>
-                    <div className='section_item section-item-doctor'>
-                        <div className='section_item_img'>
-                            <img src={bshoaian} alt="bshung" />
-                        </div>
-                        <h3>Khám Nam học, Bệnh viện Nam học và Hiếm muộn Hà Nội</h3>
-                        <span>Sức khỏe tâm thần - Tư vấn, trị liệu Tâm lý</span>
-                    </div>
-                    <div className='section_item section-item-doctor'>
-                        <div className='section_item_img'>
-                            <img src={bshung} alt="bshung" />
-                        </div>
-                        <h3>Phó Giáo sư, Tiến sĩ, Bác sĩ cao cấp Nguyễn Duy Hưng</h3>
-                        <span>Sức khỏe tâm thần - Tư vấn, trị liệu Tâm lý</span>
-                    </div>
-                    <div className='section_item section-item-doctor'>
-                        <div className='section_item_img'>
-                            <img src={bshung} alt="bshung" />
-                        </div>
-                        <h3>Khám Nam học, Bệnh viện Nam học và Hiếm muộn Hà Nội</h3>
-                        <span>Sức khỏe tâm thần - Tư vấn, trị liệu Tâm lý</span>
-                    </div>
-                    <div className='section_item section-item-doctor'>
-                        <div className='section_item_img'>
-                            <img src={bshung} alt="bshung" />
-                        </div>
-                        <h3>Khám Nam học, Bệnh viện Nam học và Hiếm muộn Hà Nội</h3>
-                        <span>Sức khỏe tâm thần - Tư vấn, trị liệu Tâm lý</span>
-                    </div>
+                    {topDoctor && topDoctor.length > 0 && topDoctor.map((item, index) => {
+                        let imgBase64 = '';
+                        if (item.image) {
+                            imgBase64 = new Buffer(item.image, 'base64').toString('binary')
+                        }
+                        let nameVI = `${item.positionData.value_VI}: ${item.lastName} ${item.firstName}`
+                        let nameEN = `${item.positionData.value_EN}: ${item.firstName} ${item.lastName}`
+                        return (
+                            <div key={index} className='section_item section-item-doctor'>
+                                <div className='section_item_img'>
+                                    <img src={imgBase64} alt={`avata bs ${item.firstName}`} />
+                                </div>
+                                <h3>{language === LANGUAGES.VI ? nameVI : nameEN}</h3>
+                                <span>Sức khỏe tâm thần - Tư vấn, trị liệu Tâm lý</span>
+                            </div>
+                        )
+                    })}
                 </Slider>
             </div>
         </section>

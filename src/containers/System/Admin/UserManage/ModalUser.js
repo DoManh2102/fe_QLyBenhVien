@@ -27,8 +27,9 @@ function ModalUser(props) {
         image: '',
         imageUrl: ''
     })
+
     useEffect(() => {
-        getAllCode()
+        getAllCode();
     }, [])
 
     // khi typeModal.userEdit thay đổi => setValueInput
@@ -196,7 +197,7 @@ function ModalUser(props) {
                                 >
                                     {allCode && allCode.length > 0 && allCode.filter(code => code.type === "GENDER").map((item, index) => {
                                         return (
-                                            <option key={index} value={item.key}>
+                                            <option key={index} value={item.keyMap}>
                                                 {language === LANGUAGES.VI ? item.value_VI : item.value_EN}
                                             </option>
                                         )
@@ -217,7 +218,7 @@ function ModalUser(props) {
                                 >
                                     {allCode && allCode.length > 0 && allCode.filter(code => code.type === "POSITION").map((item, index) => {
                                         return (
-                                            <option key={index} value={item.key}>
+                                            <option key={index} value={item.keyMap}>
                                                 {language === LANGUAGES.VI ? item.value_VI : item.value_EN}
                                             </option>
                                         )
@@ -236,7 +237,7 @@ function ModalUser(props) {
                                 >
                                     {allCode && allCode.length > 0 && allCode.filter(code => code.type === "ROLE").map((item, index) => {
                                         return (
-                                            <option key={index} value={item.key}>
+                                            <option key={index} value={item.keyMap}>
                                                 {language === LANGUAGES.VI ? item.value_VI : item.value_EN}
                                             </option>
                                         )

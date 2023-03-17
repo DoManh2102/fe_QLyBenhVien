@@ -3,11 +3,10 @@ import Table from 'react-bootstrap/Table';
 import { BiDetail } from 'react-icons/bi';
 import { CRUD_ACTION } from '../../utils/constant';
 
-
 function TableBasic({ headerList, data, deleteRow, showModalUser, cartItem }) {
+
     return (
         <Table bordered hover style={{ color: '#fff' }}>
-
             <thead>
                 <tr>
                     {headerList && headerList.length > 0 && headerList.map((title, index) =>
@@ -53,6 +52,7 @@ function TableBasic({ headerList, data, deleteRow, showModalUser, cartItem }) {
                     </tr>
                 ))}
             </tbody>
+
         </Table >
     );
 }

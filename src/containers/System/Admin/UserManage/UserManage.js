@@ -6,6 +6,7 @@ import { FormattedMessage } from 'react-intl';
 import Swal from 'sweetalert2';
 import { CRUD_ACTION } from '../../../../utils/constant';
 
+
 const headerList = [
     { fields: 'email', width: '20%' },
     { fields: 'firstName', width: '10%' },
@@ -39,7 +40,7 @@ function UserManage(props) {
         try {
             const response = await createNewUserService(data)
             if (response && response.errCode === 0) {
-                Swal.fire('Thêm thành công')
+                Swal.fire('Thêm thành công', '', 'success')
                 getAllUser();
             } else {
                 alert(response.errMessage)
@@ -48,8 +49,6 @@ function UserManage(props) {
             console.log(error);
         }
     }
-
-
 
     const showModalUser = (data, typeButton) => {
         let imgBase64 = '';
@@ -86,7 +85,7 @@ function UserManage(props) {
         try {
             const response = await eidtUserService(data)
             if (response && response.errCode === 0) {
-                Swal.fire('Cập nhật thành công')
+                Swal.fire('Cập nhật thành công', '', 'success')
                 getAllUser()
             } else {
                 alert(response.errMessage)
@@ -110,6 +109,7 @@ function UserManage(props) {
         }
     }
 
+
     return (
         <React.Fragment>
             <h2 >
@@ -124,6 +124,8 @@ function UserManage(props) {
                 showModalUser={showModalUser}
             />
             <TableBasic headerList={headerList} data={arrUser} deleteRow={deleteUser} showModalUser={showModalUser} />
+
+
         </React.Fragment>
     );
 }

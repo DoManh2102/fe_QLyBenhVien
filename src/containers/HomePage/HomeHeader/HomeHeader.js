@@ -75,12 +75,16 @@ function HomeHeader(props) {
             <div className='home-banner'>
                 <div className='banner-up'>
                     <div className='banner_title'>
-                        <h2 >Nền tảng y tế</h2>
-                        <p >Chăm sóc sức khoẻ toàn diện</p>
+                        <h2>
+                            <FormattedMessage id="home-banner.background_medical" />
+                        </h2>
+                        <p >
+                            <FormattedMessage id="home-banner.comprehensive_health_care" />
+                        </p>
                     </div>
                     <div className='banner_search'>
                         <AiOutlineSearch style={{ cursor: 'pointer' }} />
-                        <input placeholder='Nhập tên bác sĩ' />
+                        <input placeholder={language === LANGUAGES.VI ? "Nhập tên bác sĩ..." : "Enter doctor name..."} />
                     </div>
                 </div>
                 <div className='banner-down'>
@@ -89,54 +93,54 @@ function HomeHeader(props) {
                             <div className='img_option'></div>
                             <br />
                             <a href='/#'>
-                                Khám
+                                <FormattedMessage id="home-banner.option.specialist" />
                                 <br />
-                                Chuyên khoa
+                                <FormattedMessage id="home-banner.option.examination" />
                             </a>
                         </div>
                         <div>
                             <div className='img_option'></div>
                             <br />
                             <a href='/#'>
-                                Khám
+                                <FormattedMessage id="home-banner.option.specialist" />
                                 <br />
-                                từ xa
+                                <FormattedMessage id="home-banner.option.remote" />
                             </a>
                         </div>
                         <div>
                             <div className='img_option'></div>
                             <br />
                             <a href='/#'>
-                                Khám
+                                <FormattedMessage id="home-banner.option.specialist" />
                                 <br />
-                                tổng quan
+                                <FormattedMessage id="home-banner.option.general" />
                             </a>
                         </div>
                         <div>
                             <div className='img_option'></div>
                             <br />
                             <a href='/#'>
-                                Sức khoẻ
+                                <FormattedMessage id="home-banner.option.health" />
                                 <br />
-                                tinh thần
+                                <FormattedMessage id="home-banner.option.spirit" />
                             </a>
                         </div>
                         <div>
                             <div className='img_option'></div>
                             <br />
                             <a href='/#'>
-                                Khám
+                                <FormattedMessage id="home-banner.option.specialist" />
                                 <br />
-                                nha khoa
+                                <FormattedMessage id="home-banner.option.dental" />
                             </a>
                         </div>
                         <div>
                             <div className='img_option'></div>
                             <br />
                             <a href='/#'>
-                                Gói
+                                <FormattedMessage id="home-banner.option.pack" />
                                 <br />
-                                Phẫu thuật
+                                <FormattedMessage id="home-banner.option.anatomy" />
                             </a>
                         </div>
                     </div>

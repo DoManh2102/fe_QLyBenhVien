@@ -16,6 +16,28 @@
         "checkHealth": "Check overall health",
         "support": "Support"
     },
+    "home-banner": {
+        "background_medical": "MEDICAL BACKGROUND",
+        "comprehensive_health_care": "COMPREHENSIVE HEALTH CARE",
+        "enter_doctor_name": "Enter doctor's name...",
+        "option": {
+            "specialist": "Specialist",
+            "examination": "Examination",
+            "remote": "Remote",
+            "general": "General",
+            "health": "Health",
+            "spirit": "Spirit",
+            "dental": "Dental",
+            "pack": "Pack",
+            "anatomy": "Anatomy"
+        }
+    },
+    "section": {
+        "search": "Search",
+        "title": {
+            "top_last_week_doctor": "Featured doctor of the week"
+        }
+    },
     "menu": {
         "admin": {
             "management": "Management",

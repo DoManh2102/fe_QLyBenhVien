@@ -14,6 +14,28 @@
         "checkHealth": "Khám sức khoẻ tổng quan",
         "support": "Hỗ trợ"
     },
+    "home-banner": {
+        "background_medical": "Nền tảng y tế",
+        "comprehensive_health_care": "Chăm sóc sức khoẻ toàn diện",
+        "enter_doctor_name": "Nhập tên bác sĩ...",
+        "option": {
+            "specialist": "Khám",
+            "examination": "Chuyên khoa",
+            "remote": "từ xa",
+            "general": "tổng quát",
+            "health": "sức khoẻ",
+            "spirit": "tinh thần",
+            "dental": "nha khoa",
+            "pack": "Gói",
+            "anatomy": "Phẫu thuật"
+        }
+    },
+    "section": {
+        "search": "Tìm kiếm",
+        "title": {
+            "top_last_week_doctor": "Bác sĩ nổi bật tuần qua"
+        }
+    },
     "menu": {
         "admin": {
             "management": "Quản Lý",

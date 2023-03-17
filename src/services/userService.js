@@ -23,6 +23,21 @@ export const deleteUserService = (id) => {
 }
 
 export const eidtUserService = (data) => {
-    console.log(data);
     return axios.post('/user/update-user', data)
+}
+
+export const getTopDoctorService = (limit) => {
+    if (limit) {
+        return axios.get(`/doctor/get-doctor/?limit=${limit}`)
+    } else {
+        return axios.get(`/doctor/get-doctor`)
+    }
+}
+
+export const getAllDoctorService = () => {
+    return axios.get(`/doctor/get-allDoctor`)
+}
+
+export const createDetailtDoctorService = (data) => {
+    return axios.post(`/doctor/create-detailDoctor`, data)
 }
